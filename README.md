@@ -1,3 +1,8 @@
+https://bg.ibelick.com/
+
+SHADCN UI THEME GENERATOR
+https://gradient.page/tools/shadcn-ui-theme-generator
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
