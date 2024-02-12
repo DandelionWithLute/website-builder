@@ -1,3 +1,7 @@
+Don't forget question mark in middleware.ts
+const pathWithSearchParams = `${url.pathname}${
+      searchParams.length > 0 ? `?${searchParams}` : ""
+    }`;
 
 Solution:Run npm with nodejs then you may continue using bun
 NextJS Middleware Server Error: Attempt to export a nullable value for "TextDecoderStream"
