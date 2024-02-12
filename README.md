@@ -1,3 +1,8 @@
+
+Solution:Run npm with nodejs then you may continue using bun
+NextJS Middleware Server Error: Attempt to export a nullable value for "TextDecoderStream"
+https://stackoverflow.com/questions/77296025/nextjs-middleware-server-error-attempt-to-export-a-nullable-value-for-textdeco
+
 https://bg.ibelick.com/
 
 SHADCN UI THEME GENERATOR
