@@ -1,3 +1,10 @@
+queries.ts some
+at least one post (some) 
+https://www.prisma.io/docs/orm/prisma-client/queries/crud#filter-by-related-record-field-values
+
+enum Role {SUBACCOUNT_USER} to create a new DataType
+role Role @default(SUBACCOUNT_USER)
+
 Don't forget question mark in middleware.ts
 const pathWithSearchParams = `${url.pathname}${
       searchParams.length > 0 ? `?${searchParams}` : ""
