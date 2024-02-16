@@ -1,3 +1,24 @@
+npm i --save-dev @types/uuid   
+
+prisma.schema model Notification
+value under @@index() is the same as the one in @relations(fields:[value]) 
+
+queries.ts
+The following query uses upsert to update a User record with a specific email address, or create that User record if it does not exist:
+https://www.prisma.io/docs/orm/prisma-client/queries/crud#update-or-create-records
+const upsertUser = await prisma.user.upsert({
+  where: {
+    email: 'viola@prisma.io',
+  },
+  update: {
+    name: 'Viola the Magnificent',
+  },
+  create: {
+    email: 'viola@prisma.io',
+    name: 'Viola the Magnificent',
+  },
+})
+
 queries.ts some
 at least one post (some) 
 https://www.prisma.io/docs/orm/prisma-client/queries/crud#filter-by-related-record-field-values
