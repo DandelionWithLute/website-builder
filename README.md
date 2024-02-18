@@ -1,3 +1,16 @@
+UploadDropzone type is different from Props
+endpoint="imageUploader"
+
+newer version of uploadthing.ts inside /lib/ instead of
+import { generateComponents } from "@uploadthing/react";
+import { generateReactHelpers } from "@uploadthing/react/hooks";
+import type { OurFileRouter } from "@/app/api/uploadthing/core";
+export const { UploadButton, UploadDropzone, Uploader } =
+  generateComponents<OurFileRouter>();
+export const { useUploadThing, uploadFiles } =
+  generateReactHelpers<OurFileRouter>();
+
+
 npm i --save-dev @types/uuid   
 
 prisma.schema model Notification

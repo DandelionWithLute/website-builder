@@ -1,15 +1,18 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { FileIcon, X } from "lucide-react";
 import { Button } from "../ui/button";
+import { UploadDropzone } from "@/lib/uploadthing";
 
 type Props = {
-  apiEndPoints: "agencyLogo" | "avatar" | "subaccountLogo";
+  apiEndpoint: "agencyLogo" | "avatar" | "subaccountLogo";
   onChange: (url?: string) => void;
   value?: string;
 };
 
-const FileUpload = ({ apiEndPoints, onChange, value }: Props) => {
+const FileUpload = ({ apiEndpoint, onChange, value }: Props) => {
   const type = value?.split(".").pop();
 
   if (value) {
@@ -39,6 +42,19 @@ const FileUpload = ({ apiEndPoints, onChange, value }: Props) => {
       </div>
     );
   }
+  return (
+    <div className="w-full bg-muted/30">
+      <UploadDropzone
+        endpoint="imageUploader"
+        onClientUploadComplete={(res) => {
+          onChange(res?.[0].url);
+        }}
+        onUploadError={(error: Error) => {
+          console.log(error);
+        }}
+      />
+    </div>
+  );
 };
 
 export default FileUpload;
