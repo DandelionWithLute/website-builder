@@ -269,7 +269,7 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
   }
 };
 
-export const gentNotificationAndUser = async (agencyId: string) => {
+export const getNotificationAndUser = async (agencyId: string) => {
   try {
     const response = await prisma.notification.findMany({
       where: { agencyId },

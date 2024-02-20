@@ -1,3 +1,8 @@
+agency/[agencyId]
+let allNoti: any = []
+const notifications = await getNotificationAndUser(agencyId)
+if (notifications) allNoti = notifications
+
 UploadDropzone type is different from Props
 endpoint="imageUploader"
 
