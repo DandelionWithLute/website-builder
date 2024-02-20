@@ -1,3 +1,7 @@
+/navigation
+  <nav className="hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]"></nav>
+
+
 src/components/sidebar
 sideBarLogo =
         user?.Agency.SubAccount.find((subaccount) => subaccount.id === id)
