@@ -1,3 +1,13 @@
+src/components/sidebar
+sideBarLogo =
+        user?.Agency.SubAccount.find((subaccount) => subaccount.id === id)
+          ?.subAccountLogo || user.Agency.agencyLogo;
+delete question mark(?):The object might be undefined
+delete another option:Type string | undefined is not assignable to the variable.
+
+Array.prototype.find()
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+
 agency/[agencyId]
 let allNoti: any = []
 const notifications = await getNotificationAndUser(agencyId)

@@ -37,7 +37,7 @@ const layout = async ({
 
   return (
     <div className="h-screen overflow-hidden">
-      <Sidebar />
+      <Sidebar id={params.agencyId} type="agency" />
       <div className="md:pl-[300px]">
         <InfoBar />
         <div className="relative">
