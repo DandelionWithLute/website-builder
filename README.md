@@ -1,3 +1,6 @@
+modal-provider.tsx
+setOpen: (modal: React.ReactNode, fetchData?: () => Promise<any>) => {};
+
 /navigation
   <nav className="hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]"></nav>
 

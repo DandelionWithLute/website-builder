@@ -25,7 +25,7 @@ const MenuOptions = ({
   user,
   defaultOpen,
 }: Props) => {
-  const {setOpen} = useModal()
+  // const {setOpen} = useModal()
 
   return <div>menuOptions</div>;
 };

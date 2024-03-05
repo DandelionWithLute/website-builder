@@ -479,3 +479,15 @@ export const sendInvitation = async (
   return response;
 };
 
+export const _getTicketsWithAllRelations = async (laneId: string) => {
+  const response = await prisma.ticket.findMany({
+    where: { laneId: laneId },
+    include: {
+      Assigned: true,
+      Customer: true,
+      Lane: true,
+      Tags: true,
+    },
+  });
+  return response;
+};
