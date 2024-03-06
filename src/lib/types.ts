@@ -11,14 +11,17 @@ import {
 import {
   _getTicketsWithAllRelations,
   getAuthUserDetails,
+  getFunnels,
   getMedia,
   getPipeLineDetails,
+  getTicketsWithTags,
   getUserPermissions,
 } from "./queries";
 import { z } from "zod";
 import prisma from "./prisma";
 
 import Stripe from "stripe";
+import { upsertFunnelPage } from "./queries";
 
 export type NotificationWithUser =
   | ({
@@ -94,12 +97,12 @@ export type PipelineDetailsWithLanesCardsTagsTickets = Prisma.PromiseReturnType<
 >;
 
 export const LaneFormSchema = z.object({
-  name:z.string().min(1)
-})
+  name: z.string().min(1),
+});
 
 export type TicketWithTags = Prisma.PromiseReturnType<
-  typeof getTicketWithTags
->
+  typeof getTicketsWithTags
+>;
 
 export type TicketDetails = Prisma.PromiseReturnType<
   typeof _getTicketsWithAllRelations
@@ -109,3 +112,31 @@ export const ContactUserFormSchema = z.object({
   name: z.string().min(1, "Required"),
   email: z.string().email(),
 });
+
+export type Address = {
+  city: string;
+  country: string;
+  line1: string;
+  postal_code: string;
+  state: string;
+};
+
+export type ShippingInfo = {
+  address: Address;
+  name: string;
+};
+
+export type StripeCustomerType = {
+  email: string;
+  name: string;
+  shipping: ShippingInfo;
+  address: Address;
+};
+
+export type PriceList = Stripe.ApiList<Stripe.Price>;
+
+export type FunnelsForSubAccount = Prisma.PromiseReturnType<
+  typeof getFunnels
+>[0];
+
+export type upsertFunnelPage = Prisma.FunnelPageCreateWithoutFunnelInput;
