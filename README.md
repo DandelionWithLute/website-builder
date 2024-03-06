@@ -1,3 +1,16 @@
+queries.ts
+What is some? With "some" you may set query conditions for prisma.
+Permissions: {
+        some: {
+          subAccountId: subaccountId,
+          access: true,
+        },
+      },
+
+queries.ts
+await prisma.$transaction(updateTrans);
+Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
+
 modal-provider.tsx
 setOpen: (modal: React.ReactNode, fetchData?: () => Promise<any>) => {};
 
