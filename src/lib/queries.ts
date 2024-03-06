@@ -18,7 +18,7 @@ import { v4 } from "uuid";
 import {
   CreateFunnelFormSchema,
   CreateMediaType,
-  upsertFunnelPage,
+  UpsertFunnelPage,
 } from "./types";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
@@ -843,7 +843,7 @@ export const updateFunnelProducts = async (
 
 export const upsertFunnelPage = async (
   subaccountId: string,
-  funnelPage: upsertFunnelPage,
+  funnelPage: UpsertFunnelPage,
   funnelId: string
 ) => {
   if (!subaccountId || !funnelId) return;
@@ -874,6 +874,29 @@ export const upsertFunnelPage = async (
 export const deleteFunnelPage = async (funnelPageId: string) => {
   const response = await prisma.funnelPage.delete({
     where: { id: funnelPageId },
+  });
+
+  return response;
+};
+
+export const getDomainContent = async (subDomainName: string) => {
+  const response = await prisma.funnel.findUnique({
+    where: {
+      subDomainName,
+    },
+    include: { FunnelPages: true },
+  });
+  return response;
+};
+
+export const getPipelines = async (subaccountId: string) => {
+  const response = await prisma.pipeline.findMany({
+    where: { subAccountId: subaccountId },
+    include: {
+      Lane: {
+        include: { Tickets: true },
+      },
+    },
   });
   return response;
 };

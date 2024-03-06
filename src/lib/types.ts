@@ -139,4 +139,4 @@ export type FunnelsForSubAccount = Prisma.PromiseReturnType<
   typeof getFunnels
 >[0];
 
-export type upsertFunnelPage = Prisma.FunnelPageCreateWithoutFunnelInput;
+export type UpsertFunnelPage = Prisma.FunnelPageCreateWithoutFunnelInput;
