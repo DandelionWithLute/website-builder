@@ -1,3 +1,18 @@
+/providers/modal-provider.tsx
+ModalContext = useContext<modelContextType>(Object)
+
+providers/modal-provider.tsx
+react functional component
+const ModalProvider : React.FC<ModalProviderProps>
+see? it's " : " instead of " = "
+you really should use this FC if you don't want to define types later for e.g.
+const ModalProvider = ({children}:{children:React.ReactNode}) => {}
+
+providers/modal-provider.tsx
+remember question mark ? ??you may see the error bellow
+err msg:modal-provider.tsx(13, 3): 'ticket' is declared here.
+export type ModalData = sth.
+
 queries.ts
 What is some? With "some" you may set query conditions for prisma.
 Permissions: {

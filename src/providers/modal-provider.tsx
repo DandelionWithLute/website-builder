@@ -1,7 +1,7 @@
 "use client";
 import { PriceList, TicketDetails } from "@/lib/types";
 import { Agency, Contact, Plan, User } from "@prisma/client";
-import React from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface modelProviderProps {
   children: React.ReactNode;
@@ -10,14 +10,13 @@ interface modelProviderProps {
 export type ModalData = {
   user?: User;
   agency?: Agency;
-  ticket: TicketDetails;
+  ticket?: TicketDetails[0];
   contact?: Contact;
   plans?: {
     defaultPriceId: Plan;
     plans: PriceList["data"];
   };
 };
-
 type ModalContextType = {
   data: ModalData;
   isOpen: boolean;
@@ -25,8 +24,57 @@ type ModalContextType = {
   setClose: () => void;
 };
 
-const modelProvider = ({ children }: { children: React.ReactNode }) => {
-  return <div>modelProvider</div>;
+export const ModalContext = createContext<ModalContextType>({
+  data: {},
+  isOpen: false,
+  setOpen: (modal: React.ReactNode, fetchData?: () => Promise<any>) => {},
+  setClose: () => {},
+});
+
+const ModelProvider: React.FC<modelProviderProps> = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState<ModalData>({});
+  const [showingModal, setShowingModal] = useState<React.ReactNode>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const setOpen = async (
+    modal: React.ReactNode,
+    fetchData?: () => Promise<any>
+  ) => {
+    if (modal) {
+      if (fetchData) {
+        setData({ ...data, ...(await fetchData()) } || {});
+      }
+      setShowingModal(modal);
+      setIsOpen(true);
+    }
+  };
+
+  const setClose = () => {
+    setIsOpen(false);
+    setData({});
+  };
+
+  if (!isMounted) return null;
+
+  return (
+    <ModalContext.Provider value={{ data, setOpen, setClose, isOpen }}>
+      {children}
+      {showingModal}
+    </ModalContext.Provider>
+  );
 };
 
-export default modelProvider;
+export const useModal = () => {
+  const context = useContext(ModalContext);
+  if (!context) {
+    throw new Error("useModal must be used within the modal provider.");
+  }
+  return context;
+};
+
+export default ModelProvider;

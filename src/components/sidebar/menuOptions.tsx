@@ -1,10 +1,11 @@
 "use client";
+import { useModal } from "@/providers/modal-provider";
 import {
   SubAccount,
   AgencySidebarOption,
   SubAccountSidebarOption,
 } from "@prisma/client";
-import React from "react";
+import React, { useMemo, useState } from "react";
 
 type Props = {
   defaultOpen?: boolean;
@@ -25,7 +26,13 @@ const MenuOptions = ({
   user,
   defaultOpen,
 }: Props) => {
-  // const {setOpen} = useModal()
+  const { setOpen } = useModal();
+  const [isMounted, setIsMounted] = useState(false);
+
+  const openState = useMemo(
+    () => (defaultOpen ? { open: true } : {}),
+    [defaultOpen]
+  );
 
   return <div>menuOptions</div>;
 };
