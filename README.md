@@ -1,3 +1,47 @@
+THE DESIGN OF menuOptions.tsx is sososososo COOL!!!!!
+Responsive Burger Menu
+<!-- <Sheet modal={false} {...openState}>
+      <SheetTrigger
+        asChild
+        className="absolute left-4 top-4 z-[100] md:!hidden flex"
+      >
+        <Button variant="outline" size={"icon"}>
+          <Menu />
+        </Button>
+      </SheetTrigger>
+      {/* Yeah, showX was customSheetContent interface */}
+      <SheetContent
+        showX={!defaultOpen}
+        side={"left"}
+        className={clsx(
+          "bg-background/80 backdrop-blur-xl fixed top-0 border-r-[1px] p-6",
+          {
+            "hidden md:inline-block z-0 w-[300px]": defaultOpen,
+            "inline-block md:hidden z-[100] w-full": !defaultOpen,
+          }
+        )}
+      >
+        <div>123</div>
+      </SheetContent>
+    </Sheet> -->
+
+
+add showX={!defaultOpen} mannually to shadcn files under components/ui
+yeah... components/ui/sheet.tsx
+
+menuOptions.tsx
+  Outline概述、概要、轮廓
+  const openState = useMemo(
+    () => (defaultOpen ? { open: true } : {}),
+    [defaultOpen]
+  );
+
+  Button variant="outline" size={"icon"}>
+          Menu />
+  /Button>
+
+
+
 /providers/modal-provider.tsx
 ModalContext = useContext<modelContextType>(Object)
 
