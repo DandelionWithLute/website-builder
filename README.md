@@ -1,3 +1,9 @@
+html element span vs. div
+span tags are generally used for line-level content, such as short strings or individual words. div tags, on the other hand, are generally used to group larger blocks of code together, such as paragraphs or entire sections.
+https://www.shecodes.io/athena/6903-what-is-the-difference-between-span-and-div-tags-in-html#:~:text=span%20tags%20are%20generally%20used,as%20paragraphs%20or%20entire%20sections.
+
+holly sheet ! I found esc is enable while coding in menuOptions.tsx
+
 THE DESIGN OF menuOptions.tsx is sososososo COOL!!!!!
 Responsive Burger Menu
 <!-- <Sheet modal={false} {...openState}>
