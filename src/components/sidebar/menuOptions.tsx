@@ -118,8 +118,24 @@ const MenuOptions = ({
                       <CommandGroup heading="Agency">
                         <CommandItem className="!bg-transparent">
                           {defaultOpen ? (
-                            <Link href={`/agency/${user?.Agency?.id}`}>
-                              yes
+                            <Link
+                              href={`/agency/${user?.Agency?.id}`}
+                              className="flex gap-4 w-full h-full"
+                            >
+                              <div className="relative w-16">
+                                <Image
+                                  src={user?.Agency?.agencyLogo}
+                                  alt="Agency Logo"
+                                  fill
+                                  className="rounded-md object-contain"
+                                />
+                              </div>
+                              <div className="flex flex-col flex-1">
+                                {user?.Agency?.name}
+                                <span className="text-muted-foreground">
+                                  {user?.Agency?.address}
+                                </span>
+                              </div>
                             </Link>
                           ) : (
                             <SheetClose asChild>
