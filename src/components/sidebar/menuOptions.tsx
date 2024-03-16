@@ -163,7 +163,59 @@ const MenuOptions = ({
                         </CommandItem>
                       </CommandGroup>
                     )}
+                  <CommandGroup heading="Accounts">
+                    {!!subAccounts
+                      ? subAccounts.map((subAccount) => (
+                          <CommandItem key={subAccount.id}>
+                            {defaultOpen ? (
+                              <Link
+                                href={`/subaccount/${subAccount.id}`}
+                                className="flex gap-4 w-full h-full"
+                              >
+                                <div className="relative w-16">
+                                  <Image
+                                    src={subAccount.subAccountLogo}
+                                    alt="subaccount Logo"
+                                    fill
+                                    className=" rounded-md object-contain"
+                                  />
+                                </div>
+                                <div className="flex flex-col flex-1">
+                                  {subAccount.name}
+                                  <span className=" text-muted-foreground">
+                                    {subAccount.address}
+                                  </span>
+                                </div>
+                              </Link>
+                            ) : (
+                              <SheetClose asChild>
+                                <Link
+                                  href={`/subaccount/${subAccount.id}`}
+                                  className="flex gap-4 w-full h-full"
+                                >
+                                  <div className="relative w-16">
+                                    <Image
+                                      src={subAccount.subAccountLogo}
+                                      alt="subaccount Logo"
+                                      fill
+                                      className="rounded-md object-contain"
+                                    />
+                                  </div>
+                                  <div className="flex flex-col flex-1">
+                                    {subAccount.name}
+                                    <span className="text-muted-foreground">
+                                      {subAccount.address}
+                                    </span>
+                                  </div>
+                                </Link>
+                              </SheetClose>
+                            )}
+                          </CommandItem>
+                        ))
+                      : "No Accounts!"}
+                  </CommandGroup>
                 </CommandList>
+                {}
               </Command>
             </PopoverContent>
           </Popover>
