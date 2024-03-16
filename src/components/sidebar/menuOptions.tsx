@@ -1,6 +1,8 @@
 "use client";
+
 import { useModal } from "@/providers/modal-provider";
 import {
+  Agency,
   SubAccount,
   AgencySidebarOption,
   SubAccountSidebarOption,
@@ -8,7 +10,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
-import { ChevronsUpDown, Compass, Menu } from "lucide-react";
+import { ChevronsUpDown, Compass, Menu, PlusCircleIcon } from "lucide-react";
 import clsx from "clsx";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import Image from "next/image";
@@ -21,9 +23,11 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command";
-import { Agency } from "@prisma/client";
-import AgencyDetails from "../forms/agency-details";
 import Link from "next/link";
+import CustomModal from "../global/custom-modal";
+import { Separator } from "../ui/separator";
+import { icons } from "@/lib/constants";
+import SubAccountDetails from "../forms/subaccount-details";
 
 type Props = {
   defaultOpen?: boolean;
@@ -215,10 +219,69 @@ const MenuOptions = ({
                       : "No Accounts!"}
                   </CommandGroup>
                 </CommandList>
-                {}
+                {(user?.role === "AGENCY_OWNER" ||
+                  user?.role === "AGENCY_ADMIN") && (
+                  <SheetClose>
+                    <Button
+                      className="w-full flex gap-2"
+                      onClick={() => {
+                        setOpen(
+                          <CustomModal
+                            title="Create A Subaccount"
+                            subheading="You can switch between your agency account and the subaccount from the sidebar"
+                          >
+                            <SubAccountDetails
+                              agencyDetails={user?.Agency as Agency}
+                              userId={user?.id as string}
+                              userName={user?.name}
+                            />
+                          </CustomModal>
+                        );
+                      }}
+                    >
+                      <PlusCircleIcon size={15} />
+                      Create Sub Account
+                    </Button>
+                  </SheetClose>
+                )}
               </Command>
             </PopoverContent>
           </Popover>
+          <p className=" text-muted-foreground text-xs mb-2">Menu Links</p>
+          <Separator className="mb-4" />
+          <nav className="relative">
+            <Command className="rounded-lg overflow-visible bg-transparent">
+              <CommandInput placeholder="Search..." />
+              <CommandList className="py-4 overflow-visible">
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup className="overflow-visible">
+                  {sidebarOpt.map((sidebarOptions) => {
+                    let val;
+                    const result = icons.find(
+                      (icon) => icon.value === sidebarOptions.icon
+                    );
+                    if (result) {
+                      val = <result.path />;
+                    }
+                    return (
+                      <CommandItem
+                        key={sidebarOptions.id}
+                        className="md:w-[320px] w-full"
+                      >
+                        <Link
+                          href={sidebarOptions.link}
+                          className="flex items-center gap-2 hover:bg-transparent rounded-md transition-all md:w-full w-[320px]"
+                        >
+                          {val}
+                          <span>{sidebarOptions.name}</span>
+                        </Link>
+                      </CommandItem>
+                    );
+                  })}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </nav>
         </div>
       </SheetContent>
     </Sheet>

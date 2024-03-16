@@ -1,3 +1,25 @@
+
+sidebar.tsx menuOptions.tsx Infobar.tsx BlurPage.tsx [agencyid]/layout.tsx && page.tsx(next step)
+Problem:Create Sub Account Button in sidebar won't work
+The inner code of menuOptions.tsx is totally the same after copy & paste, but the problem still exists, I changed it back to my handwritten one.
+
+InfoBar.tsx
+Utility function to efficiently merge Tailwind CSS classes in JS without style conflicts.
+https://www.npmjs.com/package/tailwind-merge
+
+
+The resolver option is used to configure the form validation strategy. 
+const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
+menuOptions.tsx
+
+const form = useForm()
+import { useForm } from "react-hook-form";
+
+<!-- <CommandItem className="!bg-transparent"> -->
+!important means veryveryvery important, can change his upper layer
+
 !!subAccounts
 What does double exclamation mark mean in menuOptions.tsx file?
 The !! ensures the resulting type is a boolean (true or false).
