@@ -94,7 +94,7 @@ const page = async ({
 
   return (
     <div className="relative h-full">
-      {!agencyDetails.connectAccountId && (
+      {/* {!agencyDetails.connectAccountId && (
         <div className="absolute -top-10 -left-10 right-0 bottom-0 z-30 flex items-center justify-center backdrop-blur-md bg-background/50">
           <Card>
             <CardHeader>
@@ -112,7 +112,7 @@ const page = async ({
             </CardHeader>
           </Card>
         </div>
-      )}
+      )} */}
       <h1 className="text-4xl">Dashboard</h1>
       <Separator className="my-6" />
       <div className="flex flex-col gap-4 pb-6">
