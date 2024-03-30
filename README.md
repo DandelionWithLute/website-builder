@@ -1,4 +1,5 @@
-So busy now
+so busy with C# old school code
+So busy now with Fay
 
 Disable Stripejs
 
