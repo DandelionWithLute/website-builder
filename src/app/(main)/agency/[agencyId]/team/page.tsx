@@ -1,4 +1,4 @@
-import { db } from '@/lib/db'
+import prisma from '@/lib/prisma'
 import React from 'react'
 import DataTable from './data-table'
 import { Plus } from 'lucide-react'
@@ -12,7 +12,7 @@ type Props = {
 
 const TeamPage = async ({ params }: Props) => {
   const authUser = await currentUser()
-  const teamMembers = await db.user.findMany({
+  const teamMembers = await prisma.user.findMany({
     where: {
       Agency: {
         id: params.agencyId,
@@ -25,7 +25,7 @@ const TeamPage = async ({ params }: Props) => {
   })
 
   if (!authUser) return null
-  const agencyDetails = await db.agency.findUnique({
+  const agencyDetails = await prisma.agency.findUnique({
     where: {
       id: params.agencyId,
     },
