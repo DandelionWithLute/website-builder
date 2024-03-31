@@ -1,4 +1,4 @@
-import { db } from '@/lib/db'
+import prisma from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
@@ -7,7 +7,7 @@ type Props = {
 }
 
 const Pipelines = async ({ params }: Props) => {
-  const pipelineExists = await db.pipeline.findFirst({
+  const pipelineExists = await prisma.pipeline.findFirst({
     where: { subAccountId: params.subaccountId },
   })
 
@@ -17,7 +17,7 @@ const Pipelines = async ({ params }: Props) => {
     )
 
   try {
-    const response = await db.pipeline.create({
+    const response = await prisma.pipeline.create({
       data: { name: 'First Pipeline', subAccountId: params.subaccountId },
     })
 
