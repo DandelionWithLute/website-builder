@@ -1,3 +1,6 @@
+so busy with C# old school code
+So busy now with Fay
+
 Disable Stripejs
 
 You can create sub Account now with context!!!
