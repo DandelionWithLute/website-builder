@@ -1,6 +1,6 @@
 "use client";
 import { EditorBtns } from "@/lib/constants";
-import React, { createContext, Dispatch, useReducer } from "react";
+import React, { createContext, Dispatch, useContext, useReducer } from "react";
 import { EditorAction } from "./editor-actions";
 import { FunnelPage } from "@prisma/client";
 
@@ -372,9 +372,29 @@ type EditorProps = {
 };
 
 const EditorProvider = (props: EditorProps) => {
-  const [state,dispatch] = useReducer(editorReducer,initialState)
+  const [state, dispatch] = useReducer(editorReducer, initialState);
 
-  return <div>EditorProvider</div>;
+  return (
+    <EditorContext.Provider
+      value={{
+        state,
+        dispatch,
+        subaccountId: props.subaccountId,
+        funnelId: props.funnelId,
+        pageDetails: props.pageDetails,
+      }}
+    >
+      {props.children}
+    </EditorContext.Provider>
+  );
+};
+
+export const useEditor = () => {
+  const context = useContext(EditorContext);
+  if (!context) {
+    throw new Error("useEditor Hook must be used within the editor Provider");
+  }
+  return context;
 };
 
 export default EditorProvider;
