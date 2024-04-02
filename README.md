@@ -1,3 +1,7 @@
+import {useReducer} from "react"
+React will pass the current state and the action to your reducer function. 
+https://react.dev/reference/react/useReducer
+
 so busy with C# old school code
 So busy now with Fay
 
