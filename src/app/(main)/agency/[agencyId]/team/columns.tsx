@@ -42,10 +42,10 @@ import { deleteUser, getUser } from '@/lib/queries'
 import { useToast } from '@/components/ui/use-toast'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { UsersWithAgencySubAccountPermissionsSidebarOptions } from '@/lib/types'
+import { UserWithAgencySubAccountPermissionsSidebarOptions } from '@/lib/types'
 import CustomModal from '@/components/global/custom-modal'
 
-export const columns: ColumnDef<UsersWithAgencySubAccountPermissionsSidebarOptions>[] =
+export const columns: ColumnDef<UserWithAgencySubAccountPermissionsSidebarOptions>[] =
   [
     {
       accessorKey: 'id',
@@ -152,7 +152,7 @@ export const columns: ColumnDef<UsersWithAgencySubAccountPermissionsSidebarOptio
   ]
 
 interface CellActionsProps {
-  rowData: UsersWithAgencySubAccountPermissionsSidebarOptions
+  rowData: UserWithAgencySubAccountPermissionsSidebarOptions
 }
 
 const CellActions: React.FC<CellActionsProps> = ({ rowData }) => {

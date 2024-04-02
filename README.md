@@ -1,3 +1,17 @@
+@/app/layout.tsx
+import { Toaster } from "@/components/ui/toaster";
+toast({
+        variant: 'destructive',
+        title: 'Oppse!',
+        description: 'Could not send invitation',
+      })
+
+@/app/layout.tsx
+const inter = Inter({ subsets: ["latin"] });
+<body className={inter.className}></body>
+const font = DM_Sans({subsets:['latin']})
+<body className={font.className}></body>
+
 import {useReducer} from "react"
 React will pass the current state and the action to your reducer function. 
 https://react.dev/reference/react/useReducer
