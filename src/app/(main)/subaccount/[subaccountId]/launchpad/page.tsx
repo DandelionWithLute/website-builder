@@ -1,37 +1,37 @@
-import BlurPage from '@/components/global/blur-page'
-import { Button } from '@/components/ui/button'
+import BlurPage from "@/components/global/BlurPage";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { db } from '@/lib/db'
-import { stripe } from '@/lib/stripe'
-import { getStripeOAuthLink } from '@/lib/utils'
-import { CheckCircleIcon } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+} from "@/components/ui/card";
+import prisma from "@/lib/prisma";
+import { stripe } from "@/lib/stripe";
+import { getStripeOAuthLink } from "@/lib/utils";
+import { CheckCircleIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 type Props = {
   searchParams: {
-    state: string
-    code: string
-  }
-  params: { subaccountId: string }
-}
+    state: string;
+    code: string;
+  };
+  params: { subaccountId: string };
+};
 
 const LaunchPad = async ({ params, searchParams }: Props) => {
-  const subaccountDetails = await db.subAccount.findUnique({
+  const subaccountDetails = await prisma.subAccount.findUnique({
     where: {
       id: params.subaccountId,
     },
-  })
+  });
 
   if (!subaccountDetails) {
-    return
+    return;
   }
 
   const allDetailsExist =
@@ -42,29 +42,29 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
     subaccountDetails.companyPhone &&
     subaccountDetails.country &&
     subaccountDetails.name &&
-    subaccountDetails.state
+    subaccountDetails.state;
 
   const stripeOAuthLink = getStripeOAuthLink(
-    'subaccount',
+    "subaccount",
     `launchpad___${subaccountDetails.id}`
-  )
+  );
 
-  let connectedStripeAccount = false
+  let connectedStripeAccount = false;
 
   if (searchParams.code) {
     if (!subaccountDetails.connectAccountId) {
       try {
         const response = await stripe.oauth.token({
-          grant_type: 'authorization_code',
+          grant_type: "authorization_code",
           code: searchParams.code,
-        })
-        await db.subAccount.update({
+        });
+        await prisma.subAccount.update({
           where: { id: params.subaccountId },
           data: { connectAccountId: response.stripe_user_id },
-        })
-        connectedStripeAccount = true
+        });
+        connectedStripeAccount = true;
       } catch (error) {
-        console.log('🔴 Could not connect stripe account', error)
+        console.log("🔴 Could not connect stripe account", error);
       }
     }
   }
@@ -153,7 +153,7 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
         </div>
       </div>
     </BlurPage>
-  )
-}
+  );
+};
 
-export default LaunchPad
+export default LaunchPad;
