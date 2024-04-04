@@ -43,6 +43,7 @@
     "@stripe/react-stripe-js": "^2.6.2",
     "@tanstack/react-table": "^8.15.0",
     "@tremor/react": "^3.14.0",
+    "@types/react-beautiful-dnd": "^13.1.8",
     "@uploadthing/react": "^6.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

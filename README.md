@@ -1,3 +1,7 @@
+funnel-products-table.tsx
+//@ts-ignore
+
+
 AgencyId and Subaccount stuffs for the next step.
 
 @/app/layout.tsx
