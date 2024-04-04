@@ -1,4 +1,4 @@
-import BlurPage from '@/components/global/blur-page'
+import BlurPage from '@/components/global/BlurPage'
 import MediaComponent from '@/components/media'
 import { getMedia } from '@/lib/queries'
 import React from 'react'

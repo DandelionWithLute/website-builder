@@ -879,6 +879,16 @@ export const deleteFunnelPage = async (funnelPageId: string) => {
   return response;
 };
 
+export const getFunnelPageDetails = async (funnelPageId: string) => {
+  const response = await prisma.funnelPage.findUnique({
+    where: {
+      id: funnelPageId,
+    },
+  });
+
+  return response;
+};
+
 export const getDomainContent = async (subDomainName: string) => {
   const response = await prisma.funnel.findUnique({
     where: {
